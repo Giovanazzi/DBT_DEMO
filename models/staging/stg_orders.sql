@@ -1,3 +1,4 @@
+-- Active: 1743528247845@@127.0.0.1@3306
 with source as (
     select * from {{ source('my_dbt_db', 'raw_orders') }}
 ),

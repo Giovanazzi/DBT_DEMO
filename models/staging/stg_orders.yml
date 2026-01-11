@@ -1,0 +1,27 @@
+version: 2
+
+models:
+    - name: stg_orders
+      description: Order data with basic cleaning and transformation applied.
+      columns:
+        - name: order_id
+          description: "{{ doc('order_id_description') }}"
+          tests:
+            - not_null
+            - unique
+        - name: customer_id
+          description: "{{ doc('customer_id_description') }}"
+          tests:
+            - not_null
+            - relationships:
+                to: ref('stg_customers')
+                field: customer_id
+                name: fk_stg_orders_customer_id
+        - name: ordered_at
+          description: "{{ doc('ordered_at_description') }}"
+          tests:
+            - not_null
+        - name: store_id
+          description: "{{ doc('store_id_description') }}"
+          tests:
+            - not_null
